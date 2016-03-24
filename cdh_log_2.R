@@ -2,15 +2,13 @@ library(plotly)
 library(xlsx)
 #library(readr)
 
-setwd("~/R/cdhlogging")
-
 # fr.weblog <- read_fwf(
 #   file = "../cdhlogging_data/server-2016-03-21.log",
 #   fwf_widths(c(5, 24, 7, 9, 0))
 # )
 
 system.time(f.weblog <- read.fwf(
-  "../cdhlogging_data/server-2016-03-21.log",
+  "data/server-2016-03-21.log",
   widths = c(5, 24, 7, 9, 100),
   col.names = c("One", "Timestamp", "Thread",
                 "Severity", "Message"),
@@ -68,4 +66,4 @@ p2 <- ggplot(data = df, aes(x = as.numeric(rownames(df)),
   geom_smooth(aes(colour = RowsPerSec, fill = RowsPerSec))
 ggplotly(p2)
 
-write.xlsx(df, file = "../cdh_log_data/runtimes.xlsx")
+write.xlsx(df, file = "data/runtimes.xlsx")
